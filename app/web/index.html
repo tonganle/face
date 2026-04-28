@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>InsightFace 人脸识别</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <h1>InsightFace 人脸识别</h1>
+          <p>训练人员库、上传图片识别、查看当前模型状态。</p>
+        </div>
+        <button id="refreshBtn" class="icon-btn" title="刷新状态">↻</button>
+      </header>
+
+      <section class="metrics" aria-label="状态">
+        <div class="metric">
+          <span>人员数</span>
+          <strong id="personCount">0</strong>
+        </div>
+        <div class="metric">
+          <span>特征数</span>
+          <strong id="embeddingCount">0</strong>
+        </div>
+        <div class="metric">
+          <span>模型状态</span>
+          <strong id="modelState">未加载</strong>
+        </div>
+      </section>
+
+      <section class="grid">
+        <form id="pathTrainForm" class="panel">
+          <h2>目录训练</h2>
+          <label>
+            训练集目录
+            <input id="datasetPath" type="text" value="datasets/faces" />
+          </label>
+          <button type="submit">开始训练</button>
+        </form>
+
+        <form id="zipTrainForm" class="panel">
+          <h2>ZIP 训练</h2>
+          <label>
+            上传训练集
+            <input id="zipFile" type="file" accept=".zip" />
+          </label>
+          <button type="submit">上传并训练</button>
+        </form>
+
+        <form id="recognizeForm" class="panel">
+          <h2>图片识别</h2>
+          <label>
+            待识别图片
+            <input id="recognizeFile" type="file" accept="image/*" />
+          </label>
+          <button type="submit">识别</button>
+        </form>
+      </section>
+
+      <section class="results">
+        <div class="panel">
+          <h2>执行结果</h2>
+          <pre id="resultBox">等待操作...</pre>
+        </div>
+        <div class="panel">
+          <h2>人员库</h2>
+          <div id="peopleList" class="people-list"></div>
+        </div>
+      </section>
+    </main>
+    <script src="/static/app.js"></script>
+  </body>
+</html>

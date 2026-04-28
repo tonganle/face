@@ -1,0 +1,15 @@
+services:
+  insightface-api:
+    build: .
+    image: insightface-recognition:onnx
+    container_name: insightface-recognition
+    environment:
+      FACE_ENGINE: onnx
+      FACE_DATA_DIR: /app/data
+      FACE_THRESHOLD: "0.38"
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./datasets:/app/datasets
+    restart: unless-stopped
